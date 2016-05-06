@@ -10,6 +10,7 @@
 
       var element     = oParam.element || document.documentElement,
           bUseCapture = oParam.useCapture || false,
+          fDefault    = function( e){ return true;},
           _handler;
 
       function _delegate( fCriteria) {
@@ -33,7 +34,7 @@
           return _handler;
       }
 
-      _handler = _delegate( oParam.criteria);
+      _handler = _delegate( oParam.criteria || fDefault);
 
       _handler.destroy = function () {
         return element.removeEventListener( sEventName, _handler, bUseCapture);
